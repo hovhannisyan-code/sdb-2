@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - my_network
+    volumes:
+      - redis_data:/data
+  memcached:
+    image: memcached:latest
+    container_name: memcached
+    ports:
+      - "11211:11211"
+    networks:
+      - my_network
+    volumes:
+      - memcached_data:/data
+
+volumes:
+  redis_data:
+  memcached_data:
+networks:
+  my_network:
+    driver: bridge
